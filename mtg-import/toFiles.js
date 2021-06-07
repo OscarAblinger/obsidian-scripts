@@ -42,8 +42,11 @@ const templateFile = fs.readFileSync(templatePath, 'utf-8')
 const sourceJson = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'))
 
 // create all files with that template
+function getFileNameWithoutEnding(cardData) {
+    return `${cardData['name']}-${cardData['id']}`
+}
 function getLocalImageNameForCard(cardData) {
-    return imageFolder ? `${cardData['id']}-${cardData['name']}.jpg` : null
+    return imageFolder ? getFileNameWithoutEnding(cardData) + '.jpg' : null
 }
 
 function renderTemplateAndSave(cardData) {
@@ -54,7 +57,7 @@ function renderTemplateAndSave(cardData) {
 
     const renderedText = eta.render(templateFile, enrichedData)
     fs.writeFileSync(
-        path.join(targetFolder, `${cardData['name']}-${cardData['id']}.md`),
+        path.join(targetFolder, getFileNameWithoutEnding(cardData) + '.md'),
         renderedText)
 }
 

@@ -36,7 +36,7 @@ node toFiles template.eta all-cards.json targetFolder imageFolder
 - This script will generate files with the pattern `<name of the card>-<id of the card>.md`.
 Note that the id is the bulk id, not the gatherer id, since the later might not be unique.
 If you want to change that, you can change the naming scheme in the method
-`renderTemplateAndSave`.
+`getFileNameWithoutEnding`.
 
 - Images follow the same schema, although the end in `.jpg` instead of `.md`.
 
