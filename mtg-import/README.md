@@ -46,6 +46,8 @@ If you want to change that, you can change the naming scheme in the method
   Additionally this script will also make a special property with the name `localImg` available,
   which is the name of the `.jpg` file or `null` if images are not downloaded.
 
+- Invalid characters in file names will be sanitized and replaced with `_`
+
 ## Dependencies
 
 NPM and Node.js in order to run the script.
@@ -58,3 +60,4 @@ NPM packages: (no need to install them manually, just run `npm i` in this folder
 - [Axios](https://www.npmjs.com/package/axios) for the http request for images
 - [batch-promises](https://www.npmjs.com/package/batch-promises) in order to batch the downloads
 - [eta](https://eta.js.org/) for the templating (same engine that is used in the templater plugin)
+- [sanitize-filename](https://www.npmjs.com/package/sanitize-filename) for file name sanitizing

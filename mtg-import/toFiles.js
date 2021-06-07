@@ -28,6 +28,7 @@ const path = require('path')
 const axios = require('axios').create({
     responseType: 'stream'
 })
+const sanitize = require('sanitize-filename')
 
 // create necessary folders
 if (!fs.existsSync(targetFolder)) {
@@ -43,7 +44,7 @@ const sourceJson = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'))
 
 // create all files with that template
 function getFileNameWithoutEnding(cardData) {
-    return `${cardData['name']}-${cardData['id']}`
+    return sanitize(`${cardData['name']}-${cardData['id']}`, { replacement: '_' })
 }
 function getLocalImageNameForCard(cardData) {
     return imageFolder ? getFileNameWithoutEnding(cardData) + '.jpg' : null
