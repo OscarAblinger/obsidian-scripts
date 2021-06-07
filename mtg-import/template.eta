@@ -1,0 +1,10 @@
+# <%= it.name %>
+
+
+<% if (it.localImg) { %>![[<%= it.localImg %>]]<% } %>
+
+> id: <%= it.uri %>
+
+> oracle_id: <%= it.oracle_id %>
+
+> uri: <%= it.uri %>
