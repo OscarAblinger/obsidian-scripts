@@ -15,8 +15,11 @@ node toFiles <templatePath> <sourcePath> <targetFolder> <imageFolder>
 > `templatePath`: path to the eta template file
 >
 > `sourcePath`: path to the downloaded file with all of the cards.
->   I recommend choosing the option [All cards](https://scryfall.com/docs/api/bulk-data),
->   but it should work with all of them (although images might not be downloaded)
+>   You can find the bulk downloads [here](https://scryfall.com/docs/api/bulk-data)
+>   Note however, that the bigger ones are likely too big to be processed using the default
+>   node parameters, so I recommend splitting them up into multiple files.
+>   You can specify the same folders for all of the files without worrying about overwriting
+>   anything.
 >
 > `targetFolder`: the folder in which all of the cards are being generated
 >
