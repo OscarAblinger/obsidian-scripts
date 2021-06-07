@@ -46,6 +46,10 @@ If you want to change that, you can change the naming scheme in the method
   Additionally this script will also make a special property with the name `localImg` available,
   which is the name of the `.jpg` file or `null` if images are not downloaded.
 
+  Note that if the card does not have an image available, then this property is still set.
+  You can check whether a card has an image via it's `image_uris` properties.
+  By default, the script requires `image_uris.normal` to be set in order to be able to download an image.
+
 - Invalid characters in file names will be sanitized and replaced with `_`
 
 ## Dependencies

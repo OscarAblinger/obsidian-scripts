@@ -62,6 +62,7 @@ function renderTemplateAndSave(cardData) {
         renderedText)
 }
 
+console.log('creating and saving markdown files')
 for (const card of sourceJson) {
     renderTemplateAndSave(card)
 }
@@ -91,10 +92,10 @@ function downloadAndSafeImage(cardData) {
                     })
                 })
         } else {
-            return Promise.reject(`No image in size ${imageSize} found for card '${cardData['name']}-${cardData['id']}'`)
+            return Promise.resolve(`No image in size ${imageSize} found for card '${cardData['name']}-${cardData['id']}'`)
         }
     } else {
-        return Promise.reject(`No image urls found for card '${cardData['name']}-${cardData['id']}'`)
+        return Promise.resolve(`No image urls found for card '${cardData['name']}-${cardData['id']}'`)
     }
 }
 if (imageFolder) {
@@ -107,12 +108,15 @@ Therefore downloads are parallized and do not include a delay in between.
 
     const batchPromises = require('batch-promises')
 
-    const onePercent = 0.01 * sourceJson.length
+    const onePermill = Math.floor(0.001 * sourceJson.length)
     let nrOfSuccessfulDownloads = 0
     let nrOfUnsuccessfulDownloads = 0
 
+    console.log(`Downloading ${sourceJson.length} images – this might take a while…`)
+    console.log(`I'll try to give a status update roughly all ${onePermill} images.`)
+
     function printUpdate() {
-        if ((nrOfSuccessfulDownloads + nrOfUnsuccessfulDownloads) % onePercent === 0) {
+        if ((nrOfSuccessfulDownloads + nrOfUnsuccessfulDownloads) % onePermill === 0) {
             console.log(`Status: Total: ${sourceJson.length} | failed: ${nrOfUnsuccessfulDownloads} | success: ${nrOfSuccessfulDownloads}`)
         }
     }
